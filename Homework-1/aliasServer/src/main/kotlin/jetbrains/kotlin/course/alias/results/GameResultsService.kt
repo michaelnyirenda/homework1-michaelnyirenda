@@ -1,10 +1,23 @@
 package jetbrains.kotlin.course.alias.results
 
+import jetbrains.kotlin.course.alias.team.Team
 import org.springframework.stereotype.Service
 
 @Service
 class GameResultsService {
-    fun saveGameResults(result: GameResult): Unit = TODO("Not implemented yet")
 
-    fun getAllGameResults(): List<GameResult> = TODO("Not implemented yet")
+    companion object {
+        val gameHistory: MutableList<GameResult> = mutableListOf()
+    }
+
+    fun saveGameResults(result: GameResult) {
+        require(result.isNotEmpty()) { "The result cannot be empty" }
+        require(result.none { it.points == 0 }) { "Each team must have at least one point" }
+        gameHistory.add(result)
+    }
+
+    fun getAllGameResults(): List<GameResult> {
+        return gameHistory.reversed()
+    }
+
 }

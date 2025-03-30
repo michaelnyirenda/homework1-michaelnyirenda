@@ -6,6 +6,6 @@ class IdentifierFactory {
     var counter: Int = 0
 
     fun uniqueIdentifier(): Identifier {
-        return ++counter
+        return counter++
     }
 }

@@ -8,6 +8,9 @@ class CardService {
     // generate unique card identifiers
     val identifierFactory = IdentifierFactory()
 
+    // store used words
+    val usedWords: MutableSet<String> = mutableSetOf()
+
     // store all cards
     val cards: List<Card> = generateCards()
 
@@ -32,8 +35,8 @@ class CardService {
             }
     }
 
-    // get a card by its index or throw an error if it doesn't exist
-    fun getCardByIndex(index: Int): Card {
+    // get a card by its index or throw an error if it doesn't exist+
+--    fun getCardByIndex(index: Int): Card {
         return cards.getOrElse(index) {
             throw Error("Card with index $index does not exist")
         }
